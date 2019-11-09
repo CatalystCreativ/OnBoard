@@ -1,4 +1,5 @@
-import * ProductAPIUtil from '../util/product_api_util';
+import * as ProductAPIUtil from '../util/product_api_util';
+import { receiveErrors } from './error_actions';
 
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PRODUCT = 'RECEIVE_PRODIUCT';

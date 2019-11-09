@@ -29,7 +29,7 @@ export const updateUserPhoto = data => dispatch => {
 const removeUser = id => {
    return {
       type: REMOVE_USER,
-      projectId: id
+      userId: id
    };
 };
 
