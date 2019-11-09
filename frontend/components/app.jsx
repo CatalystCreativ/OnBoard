@@ -6,7 +6,7 @@ export default function App({store}) {
     return (
         <>
             <NavBar/>
-
+            App
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={} />
             <Route exact path="/signup" component={} />
