@@ -1,7 +1,5 @@
 import {
-   RECEIVE_SESSION_ERRORS,
    RECEIVE_CURRENT_USER,
-   REMOVE_ERRORS
 } from '../actions/session_actions';
 import {
    RECEIVE_ERRORS,
