@@ -1,9 +1,10 @@
 import React from 'react';
+import App from './app';
 
 const Root = () => {
   
     return (
-        <div>Not working!</div>
+        <App/>
     );
   };
   
