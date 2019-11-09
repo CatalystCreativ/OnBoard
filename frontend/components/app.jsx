@@ -1,9 +1,18 @@
 import React from 'react';
 import Splash from './splash';
-import { HashRouter } from 'react-router-dom'
+import NavBar from './navbar';
 
-export default function App(){
+export default function App({store}) {
     return (
-        <Splash/>
+        <>
+            <NavBar/>
+            App
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={} />
+            <Route exact path="/signup" component={} />
+            <Route exact path="/users/:userId" component={} />
+            <Route exact path="/users/:userId/:productId" component={} />
+            <Splash/>
+        </>
     )    
 }
