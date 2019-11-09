@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app';
 import configureStore from './store/store';
+import Root from './components/root';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -18,5 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
     store = configureStore();
   }
   const root = document.getElementById('root');
-  ReactDOM.render(<App/>, root);
+  ReactDOM.render(<Root/>, root);
 });
