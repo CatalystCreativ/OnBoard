@@ -12,8 +12,16 @@ export default function App({store}) {
             <Route exact path="/" component={Splash} />
             <Route exact path="/login" component={SessionForm} />
             <Route exact path="/signup" component={SignUp} />
+<<<<<<< HEAD
             {/* <Route exact path="/users/:userId" component={} />
             <Route exact path="/users/:userId/:productId" component={} /> */}
+=======
+            {/* <Route exact path="/login" component={} />
+            <Route exact path="/signup" component={} />
+            <Route exact path="/users/:userId" component={} />
+            <Route exact path="/users/:userId/:productId" component={} /> */}
+            <Splash/>
+>>>>>>> fix errors
         </>
     )    
 }
