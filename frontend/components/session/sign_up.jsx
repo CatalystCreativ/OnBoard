@@ -13,13 +13,13 @@ class SignUp extends React.Component {
     render(){
         return (
             <div className="d-flex justify-content-center mt-3 mb-3">
-                <div class="page-container">
+                <div className="page-container">
                     <form action="#" method="POST">
                         <h1>Sign Up</h1>
-                        <input type="text" name="name" class="Name" placeholder="Name"/>
-                        <input type="text" name="tele" class="Tele" placeholder="Number Phone"/>
-                        <input type="text" name="email" class="Email" placeholder="Email"/>
-                        <input type="password" name="password" class="Address" placeholder="password"/>
+                        <input type="text" name="name" className="Name" placeholder="Name"/>
+                        <input type="text" name="tele" className="Tele" placeholder="Number Phone"/>
+                        <input type="text" name="email" className="Email" placeholder="Email"/>
+                        <input type="password" name="password" className="Address" placeholder="password"/>
                         <button type="submit" value="Add" name="submit">Submit</button>
                     </form>
                 </div>
