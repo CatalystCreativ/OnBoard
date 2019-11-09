@@ -32,7 +32,4 @@ ActiveRecord::Schema.define(version: 2019_07_19_000305) do
     t.index ["username"], name: "index_users_on_username"
   end
 
-  create_table "users_tables", force: :cascade do |t|
-  end
-
 end
