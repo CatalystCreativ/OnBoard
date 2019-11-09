@@ -8,10 +8,10 @@ export default function App({store}) {
             <NavBar/>
             App
             <Route exact path="/" component={Home} />
-            <Route exact path="/login" component={} />
+            {/* <Route exact path="/login" component={} />
             <Route exact path="/signup" component={} />
             <Route exact path="/users/:userId" component={} />
-            <Route exact path="/users/:userId/:productId" component={} />
+            <Route exact path="/users/:userId/:productId" component={} /> */}
             <Splash/>
         </>
     )    
