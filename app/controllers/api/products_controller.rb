@@ -15,3 +15,9 @@ end
 
 def update
 end
+
+private 
+
+def post_params
+    params.require(:product).permit(:name, photos: [])
+end
