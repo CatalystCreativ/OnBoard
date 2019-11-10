@@ -89,5 +89,8 @@ ActiveRecord::Schema.define(version: 2019_11_10_034053) do
     t.index ["username"], name: "index_users_on_username"
   end
 
+  create_table "users_tables", force: :cascade do |t|
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
