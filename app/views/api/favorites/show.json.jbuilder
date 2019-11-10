@@ -1,0 +1,1 @@
+json.set! @favorite.product_id @product
