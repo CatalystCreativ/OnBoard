@@ -1,5 +1,4 @@
-import { RECEIVE_FAVORITES, REMOVE_FAVORITE } from '../actions/favorite_actions';
-import { RECEIVE_PRODUCT } from '../actions/product_actions';
+import { RECEIVE_FAVORITES, REMOVE_FAVORITE, RECEIVE_FAVORITE } from '../actions/favorite_actions';
 import merge from 'lodash/merge';
 
 export default (state = {}, action) => {

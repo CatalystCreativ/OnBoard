@@ -13,17 +13,6 @@ const receiveFavorites = ({ favorites, products }) => {
    }
 }
 
-data = {
-   favorites: {
-      productId: true,
-      productId2: true
-   },
-   products: {
-      productId: product,
-      productId2: product2
-   }
-}
-
 const receiveFavorite = (productId) => {
    return {
       type: RECEIVE_FAVORITE,
