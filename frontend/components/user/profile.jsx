@@ -10,9 +10,9 @@ class UserProfile extends React.Component {
       this.userId = this.props.userId;
       this.products = this.props.products;
       this.favorites = this.props.favorites;
-      this.requestUser = this.props.requestUser.bind(this);
-      this.requestProducts = this.props.requestProducts.bind(this);
-      this.requestFavorites = this.props.requestFavorites.bind(this);
+      this.requestUser = this.props.requestUser;
+      this.requestProducts = this.props.requestProducts;
+      this.requestFavorites = this.props.requestFavorites;
    }
 
    componentDidMount() {
