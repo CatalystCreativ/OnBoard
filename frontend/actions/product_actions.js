@@ -6,8 +6,12 @@ export const RECEIVE_PRODUCT = 'RECEIVE_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
 export const requestProducts = filters => dispatch => {
-   return ProductAPIUtil.fetchProducts(id).then(products => dispatch(receiveProducts(products)));
+   return ProductAPIUtil.fetchProducts(filters).then(products => dispatch(receiveProducts(products)));
 };
+
+// export const requestFavoriteProducts = userId => dispatch => {
+//    return ProductAPIUtil.fetchFavoriteProducts(userId).then(products => dispatch(receiveProducts(products)));
+// }
 
 const receiveProducts = products => {
    return {
@@ -20,7 +24,7 @@ export const requestProduct = id => dispatch => {
    return ProductAPIUtil.fetchProduct(id).then(product => dispatch(receiveProduct(payload)));
 };
 
-const receiveProduct = product => {
+export const receiveProduct = product => {
    return {
       type: RECEIVE_PRODUCT,
       product

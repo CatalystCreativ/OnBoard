@@ -21,7 +21,6 @@ class NavBar extends React.Component {
                         <div className="avatar" />
                     </Link>
                     <div className="dropdown">
-                        <Link className="nav-link" to="/products">My Products</Link>
                         <Link className="nav-link" to="/settings">Settings</Link>
                         <button type="button" className="nav-link" onClick={this.logOut}>Log Out</button>
                     </div>
