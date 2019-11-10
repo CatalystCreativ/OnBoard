@@ -12,6 +12,8 @@ export default (state = {}, action) => {
          return action.products;
       case RECEIVE_PRODUCT:
          return merge({}, state, {[action.project.id]: action.project});
+      case RECEIVE_FAVORITES:
+         return merge({}, state, action.products)
       case REMOVE_PRODUCT:
          newState = state;
          delete newState[action.productId];

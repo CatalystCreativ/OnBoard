@@ -16,7 +16,7 @@ export const fetchProducts = filters => {
 export const fetchProduct = id => {
    return $.ajax({
       method: 'GET',
-      url: '/api/products/${id}'
+      url: `/api/products/${id}`
    });
 };
 
@@ -33,7 +33,7 @@ export const createProduct = formData => {
 export const updateProduct = data => {
    return $.ajax({
       method: 'PATCH',
-      url: '/api/products/${data.id}',
+      url: `/api/products/${data.id}`,
       data: data.formData,
       contentType: false,
       processData: false
@@ -43,6 +43,6 @@ export const updateProduct = data => {
 export const deleteProduct = id => {
    return $.ajax({
       method: 'DELETE',
-      url: '/api/products/${id}'
+      url: `/api/products/${id}`
    });
 };
