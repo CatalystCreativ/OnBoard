@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { addFavorite } from '../../actions/favorite_actions';
 import ProductItem from './product_item';
 
-const msp = ({ product }) => {
+const msp = (product) => {
    return {
       product
    };
