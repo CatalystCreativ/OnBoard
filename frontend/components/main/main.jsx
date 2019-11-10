@@ -1,6 +1,5 @@
 import React from 'react';
-import NavBar from './navbar';
-
+import NavBarContainer from '../navbar/navbar_container';
 
 class Main extends React.Component {
     constructor(props){
@@ -11,7 +10,7 @@ class Main extends React.Component {
     render(){
         return (
             <>
-                <NavBar/>
+                <NavBarContainer/>
             </>
         )
     }
