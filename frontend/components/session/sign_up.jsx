@@ -1,6 +1,7 @@
 import React from 'react';
 import { signUp } from '../../util/session_api_util';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class SignUp extends React.Component {
     constructor(props){
@@ -53,14 +54,15 @@ class SignUp extends React.Component {
                             <div className="mb-3 mt-3 row align-items-center remember">
                                 <input type="checkbox" />Remember Me
                             </div>
-                            <div className="form-group">
-                                <input type="submit" value="Find a Board!" className="btn float-right login_btn" />
+                            <div className="form-group text-center">
+                                <input type="submit" value="Find a Board!" className="btn login_btn" />
                             </div>
                         </form>
                     </div>
                     <div className="card-footer">
                         <div className="d-flex justify-content-center links">
-                            Already stoked with an account?<a href="#">Sign In</a>
+                            Already stoked with an account?
+                            <Link to={'/login'}>Sign In</Link>
                         </div>
                     </div>
                 </div>

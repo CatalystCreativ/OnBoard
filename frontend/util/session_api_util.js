@@ -1,4 +1,5 @@
 export const logIn = user => {
+   console.log('logging in user ', user);
    return $.ajax({
       method: 'POST',
       url: '/api/session',

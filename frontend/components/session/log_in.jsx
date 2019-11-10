@@ -1,5 +1,7 @@
 import React from 'react';
-
+import { logIn } from '../../actions/session_actions';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 class LogIn extends React.Component {
     constructor(props){
         super(props); // this.props = props 
@@ -15,14 +17,12 @@ class LogIn extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        // send to database!
-        console.log('lol', this.state)
+        this.props.dispatchLogIn(this.state);
     }
 
     handleChange(e) {
-         this.setState({[e.target.name]: e.target.value});
-        console.log(this.state)
-        }
+        this.setState({[e.target.name]: e.target.value});   
+    }
 
     render(){
         return (
@@ -49,23 +49,27 @@ class LogIn extends React.Component {
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="fas fa-key"></i></span>
                                     </div>
-                                    <input type="password" className="form-control" placeholder="password" />
+                                    <input name="email" onChange={ this.handleChange }  type="text" className="form-control" placeholder="Email" />
+                            </div>
+                                <div className="input-group form-group">
+                                    <div className="input-group-prepend">
+                                        <span className="input-group-text"><i className="fas fa-key"></i></span>
+                                    </div>
+                                    <input name="password" onChange={ this.handleChange } type="password" className="form-control" placeholder="password" />
                                 </div>
                                 <div className="row align-items-center remember">
                                     <input type="checkbox" />Remember Me
                                 </div>
-                                <div className="form-group">
-                                    <input type="submit" value="Come on In!" className="btn float-right login_btn" />
+                                <div className="form-group text-center">
+                                    <input name="username" onChange={ this.handleChange } type="submit" value="Come on In!" className="btn login_btn" />
                                 </div>
                             </form>
                         </div>
                         <div className="card-footer">
                             <div className="d-flex justify-content-center links">
-                                Don't have an account?<a href="#">Sign Up</a>
+                                <Link to={'/signup'}>Sign Up</Link>
                             </div>
-                            <div className="d-flex justify-content-center">
-                                <a href="#">Forgot your password?</a>
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -74,4 +78,10 @@ class LogIn extends React.Component {
     }
 }
 
-export default LogIn;
+const mdp = dispatch => {
+    return {
+        dispatchLogIn: (user) => dispatch(logIn(user)),
+    }
+}
+
+export default connect(null, mdp)(LogIn);

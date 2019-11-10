@@ -24,6 +24,7 @@ export const signUp = user => dispatch => {
 };
 
 export const logIn = user => dispatch => {
+   console.log('loggins in action');
    return SessionAPIUtil.logIn(user).then(user => dispatch(receiveCurrentUser(user)),
       err => dispatch(receiveErrors(err.responseJSON)));
 };

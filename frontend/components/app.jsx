@@ -1,9 +1,9 @@
 import React from 'react';
-import Splash from './splash';
-import NavBar from './navbar';
+import Main from './main/main';
 import { Route, HashRouter } from 'react-router-dom';
 import LogIn from './session/log_in';
 import SignUp from './session/sign_up';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
  /* <Route exact path="/login" component={} />
             <Route exact path="/signup" component={} />
@@ -13,11 +13,9 @@ import SignUp from './session/sign_up';
 export default function App({store}) {
     return (
         <>
-            <NavBar/>
-            <Route exact path="/" component={Splash} />
-            <Route exact path="/login" component={LogIn} />
-            <Route exact path="/signup" component={SignUp} />
-            <Splash/>
+            <AuthRoute exact path="/login" component={LogIn} />
+            <AuthRoute exact path="/signup" component={SignUp} />
+            <ProtectedRoute exact path="/" component ={Main}/>
         </>
     )    
 }
