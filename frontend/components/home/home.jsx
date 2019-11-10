@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBarContainer from '../navbar/navbar_container';
 
-class Main extends React.Component {
+class Home extends React.Component {
     constructor(props){
         super(props);
         this.state = {}
@@ -16,4 +16,4 @@ class Main extends React.Component {
     }
 }
 
-export default Main; 
+export default Home; 
