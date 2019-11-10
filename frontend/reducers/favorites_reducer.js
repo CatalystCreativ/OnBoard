@@ -16,7 +16,11 @@ export default (state = {}, action) => {
          delete newState[action.favoriteId];
          return newState;
       case RECEIVE_PRODUCT:
+<<<<<<< HEAD
          return merge({}, state, {[action.product.id]: action.product.id});
+=======
+         return merge({}, state, {[action.product.id]: null});
+>>>>>>> c1249f181914b9e5da95d54031a753d57174f0b7
       default:
          return state;
    }
