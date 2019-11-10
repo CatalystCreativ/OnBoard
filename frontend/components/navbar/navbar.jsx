@@ -16,7 +16,7 @@ class NavBar extends React.Component {
                 <>
                     <Link className="nav-link" to="/products/create">Add Product</Link>
                     <Link className="nav-link" to="/messages">Messages</Link>
-                    <Link className="nav-link" to={'/users/${this.props.currentUser.id'}>
+                    <Link className="nav-link" to={`/users/${this.props.currentUser.id}`}>
                         My Profile
                         <div className="avatar" />
                     </Link>
