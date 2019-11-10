@@ -17,5 +17,7 @@ export default (state = {}, action) => {
          return newState;
       case RECEIVE_PRODUCT:
          return merge({}, state, {[action.product.id]: null});
+      default:
+         return state;
    }
 }
