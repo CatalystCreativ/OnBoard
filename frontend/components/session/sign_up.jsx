@@ -49,8 +49,7 @@ class SignUp extends React.Component {
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fas fa-key"></i></span>
                                 </div>
-                                <input name="password" onChange={ this.handleChange }  type="password" className="form-control d-flex align-items-center" placeholder="Password" />
-                            </div>
+                                <input name="password" onChange={ this.handleChange }  type="password" className="form-control d-flex align-items-center" placeholder="Password" /> </div>
                             <div className="mb-3 mt-3 row align-items-center remember">
                                 <input type="checkbox" />Remember Me
                             </div>

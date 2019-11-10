@@ -12,7 +12,6 @@ export const signUp = user => {
       method: 'POST',
       url: '/api/users',
       data: { user },
-      contentType: false
    });
 };
 
