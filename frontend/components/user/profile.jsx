@@ -51,7 +51,7 @@ class UserProfile extends React.Component {
          surf = surfProducts.map(( surfboard, idx ) => {
             return (
                <div key={`surfboard-${idx}`}>
-                  <ProductContainer product={ surfboard } />
+                  <ProductItemContainer product={ surfboard } />
                </div>
             )
          });
@@ -63,7 +63,7 @@ class UserProfile extends React.Component {
          skate = skateProducts.map(( skateboard, idx ) => {
             return (
                <div key={`skateboard-${idx}`}>
-                  <ProductContainer product={ skateboard } />
+                  <ProductItemContainer product={ skateboard } />
                </div>
             )
          });
@@ -71,11 +71,11 @@ class UserProfile extends React.Component {
 
       const snowProducts = this.products["snow"];
 
-      if ( snowProducts ) {
+      if ( snowProducts.length ) {
          snow = snowProducts.map(( snowboard, idx ) => {
             return (
                <div key={`snowboard-${idx}`}>
-                  <ProductContainer product={ snowboard } />
+                  <ProductItemContainer product={ snowboard } />
                </div>
             )
          });
