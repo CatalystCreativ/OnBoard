@@ -20,24 +20,3 @@ export default (state = {}, action) => {
          return state;
    }
 }
-
-// state = {
-//    entities: {
-//       products: {
-//          1: {
-//             title: ByteLengthQueuingStrategy,
-//             userId: 10
-//          }
-//       },
-//       favorites: {
-//          1: true,
-//          5: true
-//       },
-//       users: {
-//          18: {
-//             name: "name"
-//          }
-         
-//       }
-//    }
-// }
