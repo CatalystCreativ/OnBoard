@@ -14,9 +14,9 @@ class Home extends React.Component {
     }
 
     render(){
-        const surfProducts = this.products["surf"];
-        const skateProducts = this.products["skate"];
-        const snowProducts = this.products["snow"];
+        // const surfProducts = this.products["surf"];
+        // const skateProducts = this.products["skate"];
+        // const snowProducts = this.products["snow"];
 
 
 
