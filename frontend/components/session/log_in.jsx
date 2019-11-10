@@ -60,7 +60,7 @@ class LogIn extends React.Component {
                                 <div className="row align-items-center remember">
                                     <input type="checkbox" />Remember Me
                                 </div>
-                                <div className="form-group text-center">
+                                <div className="form-group text-center mt-2">
                                     <input name="username" onChange={ this.handleChange } type="submit" value="Come on In!" className="btn login_btn" />
                                 </div>
                             </form>
