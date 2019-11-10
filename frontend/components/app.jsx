@@ -6,7 +6,6 @@ import SignUp from './session/sign_up';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container';
 
-
  /* <Route exact path="/login" component={} />
             <Route exact path="/signup" component={} />
             <Route exact path="/users/:userId" component={} />
@@ -17,6 +16,7 @@ export default function App({store}) {
         <>
             <NavBarContainer />
             <Route exact path="/" component ={Home}/>
+
             <AuthRoute exact path="/login" component={LogIn} />
             <AuthRoute exact path="/signup" component={SignUp} />
         </>

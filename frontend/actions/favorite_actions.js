@@ -37,7 +37,7 @@ const removeFavorite = id => {
    }
 }
 
-export const deleteFavorite = ids => dispatch => {
-   return FavoriteAPIUtil.deleteFavorite(ids).then(() => dispatch(removeFavorite(ids.favoriteId)),
+export const deleteFavorite = id => dispatch => {
+   return FavoriteAPIUtil.deleteFavorite(id).then(() => dispatch(removeFavorite(id.favoriteId)),
       err => dispatch(receiveErrors(err.responseJSON)));
 };
