@@ -11,8 +11,8 @@ export const receiveUser = user => {
    };
 };
 
-export const requestUser = id => dispatch => {
-   return UserAPIUtil.fetchUser(id).then(user => dispatch(receiveUser(user)),
+export const requestUser = user => dispatch => {
+   return UserAPIUtil.fetchUser(user).then(user => dispatch(receiveUser(user)),
       err => dispatch(receiveErrors(err.responseJSON)));
 };
 
