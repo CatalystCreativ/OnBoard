@@ -1,5 +1,4 @@
 import React from 'react';
-import NavBarContainer from '../navbar/navbar_container';
 
 class Home extends React.Component {
     constructor(props){
@@ -10,7 +9,6 @@ class Home extends React.Component {
     render(){
         return (
             <>
-                <NavBarContainer/>
             </>
         )
     }
