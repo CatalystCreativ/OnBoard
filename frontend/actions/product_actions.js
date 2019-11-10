@@ -24,7 +24,7 @@ export const requestProduct = id => dispatch => {
    return ProductAPIUtil.fetchProduct(id).then(product => dispatch(receiveProduct(payload)));
 };
 
-const receiveProduct = product => {
+export const receiveProduct = product => {
    return {
       type: RECEIVE_PRODUCT,
       product
