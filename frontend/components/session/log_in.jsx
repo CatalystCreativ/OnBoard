@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SessionForm extends React.Component {
+class LogIn extends React.Component {
     constructor(props){
         super(props); // this.props = props 
         this.state = {
@@ -8,7 +8,21 @@ class SessionForm extends React.Component {
             email: '',
             password: ''
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this)
+        this.handleChange = this.handleChange.bind(this)
     }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        // send to database!
+        console.log('lol', this.state)
+    }
+
+    handleChange(e) {
+         this.setState({[e.target.name]: e.target.value});
+        console.log(this.state)
+        }
 
     render(){
         return (
@@ -16,7 +30,7 @@ class SessionForm extends React.Component {
                 <div className="d-flex justify-content-center h-100">
                     <div className="card">
                         <div className="card-header">
-                            <h3>Sign In</h3>
+                            <h3>Log In</h3>
                             <div className="d-flex justify-content-end social_icon">
                                 <span><i className="fab fa-facebook-square"></i></span>
                                 <span><i className="fab fa-google-plus-square"></i></span>
@@ -24,12 +38,12 @@ class SessionForm extends React.Component {
                             </div>
                         </div>
                         <div className="card-body">
-                            <form>
+                            <form onSubmit={ this.handleSubmit }>
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend">
                                         <span className="input-group-text"><i className="fas fa-user"></i></span>
                                     </div>
-                                    <input type="text" className="form-control" placeholder="username" />
+                                    <input name="username" onChange={ this.handleChange } type="text" className="form-control" placeholder="username" />
                                 </div>
                                 <div className="input-group form-group">
                                     <div className="input-group-prepend">
@@ -60,4 +74,4 @@ class SessionForm extends React.Component {
     }
 }
 
-export default SessionForm;
+export default LogIn;

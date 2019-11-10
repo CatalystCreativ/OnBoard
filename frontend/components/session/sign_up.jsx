@@ -1,13 +1,26 @@
 import React from 'react';
+import { signUp } from '../../util/session_api_util';
+import { connect } from 'react-redux';
 
 class SignUp extends React.Component {
     constructor(props){
-        super(props); // this.props = props 
+        super(props); 
         this.state = {
             username: '',
             email: '',
             password: ''
         }
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+        this.props.dispatchSignUp(this.state)
+    }
+
+    handleChange(e) {
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render(){
@@ -19,24 +32,24 @@ class SignUp extends React.Component {
                         <h3>Sign Up</h3>
                     </div>
                     <div className="card-body">
-                        <form>
+                        <form onSubmit={ this.handleSubmit }>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" className="form-control" placeholder="Username" />
+                                <input name="username" onChange={ this.handleChange } type="text" className="form-control" placeholder="Username" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fas fa-key"></i></span>
                                 </div>
-                                <input type="text" className="form-control" placeholder="Email" />
+                                <input name="email" onChange={ this.handleChange }  type="text" className="form-control" placeholder="Email" />
                             </div>
                             <div className="input-group form-group">
                                 <div className="input-group-prepend">
                                     <span className="input-group-text"><i className="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" className="form-control d-flex align-items-center" placeholder="Password" />
+                                <input name="password" onChange={ this.handleChange }  type="password" className="form-control d-flex align-items-center" placeholder="Password" />
                             </div>
                             <div className="mb-3 mt-3 row align-items-center remember">
                                 <input type="checkbox" />Remember Me
@@ -58,4 +71,10 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+const mdp = dispatch => {
+    return {
+        dispatchSignUp: (user) => dispatch(signUp(user)),        
+    }
+}
+
+export default connect(null, mdp)(SignUp);

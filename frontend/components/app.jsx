@@ -2,7 +2,7 @@ import React from 'react';
 import Splash from './splash';
 import NavBar from './navbar';
 import { Route, HashRouter } from 'react-router-dom';
-import SessionForm from './session/session_form';
+import LogIn from './session/log_in';
 import SignUp from './session/sign_up';
 
  /* <Route exact path="/login" component={} />
@@ -15,7 +15,7 @@ export default function App({store}) {
         <>
             <NavBar/>
             <Route exact path="/" component={Splash} />
-            <Route exact path="/login" component={SessionForm} />
+            <Route exact path="/login" component={LogIn} />
             <Route exact path="/signup" component={SignUp} />
             <Splash/>
         </>
