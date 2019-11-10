@@ -2,9 +2,16 @@ export const fetchProducts = filters => {
    return $.ajax({
       method: 'GET',
       url: '/api/products',
-      data: {filters: filters}
+      data: { filters: filters }
    });
 };
+
+// export const fetchFavoriteProducts = userId => {
+//    return $.ajax({
+//       method: 'GET',
+//       data: { filters: { favoritingUserId: userId }}
+//    })
+// }
 
 export const fetchProduct = id => {
    return $.ajax({
