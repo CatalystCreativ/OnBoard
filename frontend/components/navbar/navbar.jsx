@@ -20,9 +20,14 @@ class NavBar extends React.Component {
                         My Profile
                         <div className="avatar" />
                     </Link>
-                    <div className="dropdown">
-                        <Link className="nav-link" to="/settings">Settings</Link>
-                        <button type="button" className="nav-link" onClick={this.logOut}>Log Out</button>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div className="collapse navbar-collapse" id="navbarNav">
+                        <ul className="navbar-nav ml-auto">
+                            <Link className="nav-link" to="/settings">Settings</Link>
+                            <button type="button" className="nav-link" onClick={this.logOut}>Log Out</button>
+                        </ul>
                     </div>
                 </>
             )
@@ -38,14 +43,7 @@ class NavBar extends React.Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to="/">OnBoard</Link>
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ml-auto">
-                        { authNav }
-                    </ul>
-                </div>
+                { authNav }
             </nav>
         )
     }

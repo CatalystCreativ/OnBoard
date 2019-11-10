@@ -1,5 +1,5 @@
 import React from 'react';
-import Main from './main/main';
+import Home from './home/home';
 import { Route, HashRouter } from 'react-router-dom';
 import LogIn from './session/log_in';
 import SignUp from './session/sign_up';
@@ -13,9 +13,9 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 export default function App({store}) {
     return (
         <>
+            <Route exact path="/" component ={Home}/>
             <AuthRoute exact path="/login" component={LogIn} />
             <AuthRoute exact path="/signup" component={SignUp} />
-            <ProtectedRoute exact path="/" component ={Main}/>
         </>
     )    
 }
