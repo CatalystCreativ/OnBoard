@@ -3,6 +3,9 @@ import {
    RECEIVE_PRODUCT,
    REMOVE_PRODUCT
 } from '../actions/product_actions';
+import {
+   RECEIVE_FAVORITES
+} from '../actions/favorite_actions';
 import merge from 'lodash/merge';
 
 export default (state = {}, action) => {
