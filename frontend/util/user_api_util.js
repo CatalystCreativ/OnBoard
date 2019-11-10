@@ -1,4 +1,5 @@
 export const fetchUser = id => {
+   console.log('fetching user ', id);
    return $.ajax({
       method: 'GET',
       url: '/api/users/${id}'
