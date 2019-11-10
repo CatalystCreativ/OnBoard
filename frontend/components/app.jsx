@@ -14,10 +14,10 @@ import ProductForm from './product/product_form';
 export default function App({store}) {
     return (
         <>  
-            <ProductForm/>
-            {/* <AuthRoute exact path="/login" component={LogIn} /> */}
-            {/* <AuthRoute exact path="/signup" component={SignUp} /> */}
-            {/* <ProtectedRoute exact path="/" component ={Main}/> */}
+
+            <AuthRoute exact path="/login" component={LogIn} />
+            <AuthRoute exact path="/signup" component={SignUp} />
+            <ProtectedRoute exact path="/" component ={Main}/>
         </>
     )    
 }
