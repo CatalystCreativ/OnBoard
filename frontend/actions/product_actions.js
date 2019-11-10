@@ -1,5 +1,6 @@
 import * as ProductAPIUtil from '../util/product_api_util';
 import { receiveErrors } from './error_actions';
+import { O_NOCTTY } from 'constants';
 
 export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PRODUCT = 'RECEIVE_PRODUCT';
@@ -21,7 +22,7 @@ const receiveProducts = products => {
 };
 
 export const requestProduct = id => dispatch => {
-   return ProductAPIUtil.fetchProduct(id).then(product => dispatch(receiveProduct(payload)));
+   return ProductAPIUtil.fetchProduct(id).then(product => dispatch(receiveProduct(product)));
 };
 
 export const receiveProduct = product => {

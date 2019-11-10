@@ -5,74 +5,100 @@ import Feed from './feed';
 class UserProfile extends React.Component {
    constructor(props) {
       super(props);
-      this.requestUser = this.props.requestUser.bind(this);
-      this.fetchProducts = this.props.fetchProducts.bind(this);
+      this.currentUser = this.props.currentUser;
+      this.user = this.props.user;
+      this.userId = this.props.userId;
+      this.products = this.props.products;
+      this.favorites = this.props.favorites;
+      this.requestUser = this.props.requestUser;
+      this.requestProducts = this.props.requestProducts;
+      this.requestFavorites = this.props.requestFavorites;
    }
 
    componentDidMount() {
-      const userId = this.props.match.params.userId
+      const currentUser = this.currentUser;
+      const userId = this.props.userId;
+
       this.requestUser( userId );
-      this.fetchProducts({ userId });
+      this.requestProducts({ userId });
+      
+      if ( this.currentUser === userId ) {
+         this.requestFavorites( currentUser );
+      }
    }
 
    render() {
-      let username;
-      let email;
-      let bio;
+      let user = this.user;
+      let username = "";
+      let email = "";
+      let bio = "";
+      // let rating; need to implement rating table
 
-      if (this.props.user) {
-         username = this.props.user.username;
-         email = this.props.user.email;
-         bio = this.props.user.bio;
+      if ( user ) {
+         username = user.username;
+         email = user.email;
+         bio = user.bio;
       }
+      // rating = user.rating; need to implement rating backend for associating ratings with users and averaging
 
-      let surf;
-      let skate;
-      let snow;
+      let surf = "";
+      let skate = "";
+      let snow = "";
 
-      if (this.props.products["surf"]) {
-         surf = this.props.products["surf"].map((surfboard, idx) => {
+      const surfProducts = this.products["surf"];
+
+      if ( surfProducts.length ) {
+         surf = surfProducts.map(( surfboard, idx ) => {
             return (
                <div key={`surfboard-${idx}`}>
-                  <ProductContainer product={ surfboard } />
+                  <ProductItemContainer product={ surfboard } />
                </div>
             )
          });
       }
 
-      if (this.props.products["skate"]) {
-         skate = this.props.products["skate"].map((skateboard, idx) => {
+      const skateProducts = this.products["skate"];
+
+      if ( skateProducts.length ) {
+         skate = skateProducts.map(( skateboard, idx ) => {
             return (
                <div key={`skateboard-${idx}`}>
-                  <ProductContainer product={ skateboard } />
+                  <ProductItemContainer product={ skateboard } />
                </div>
             )
          });
       }
 
-      if (this.props.products["snow"]) {
-         snow = this.props.products["snow"].map((snowboard, idx) => {
+      const snowProducts = this.products["snow"];
+
+      if ( snowProducts.length ) {
+         snow = snowProducts.map(( snowboard, idx ) => {
             return (
                <div key={`snowboard-${idx}`}>
-                  <ProductContainer product={ snowboard } />
+                  <ProductItemContainer product={ snowboard } />
                </div>
             )
          });
       }
+
+      let favorites = this.favorites;
       
       return (
          <>
             <div className="">
                <div className="avatar">Large Avatar</div>
                <ul>
-                  <li>{username}</li>
-                  <li>{email}</li>
-                  <li>{bio}</li>
+                  <li>{ username }</li>
+                  <li>{ email }</li>
+                  <li>{ bio }</li>
                </ul>
                <ul>
                   <li>{ surf }</li>
                   <li>{ skate }</li>
                   <li>{ snow }</li>
+               </ul>
+               <ul>
+                  { favorites }
                </ul>
             </div>
          </>
