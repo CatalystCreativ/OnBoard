@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import Feed from './feed';
+import ProductIndexContainer from '../products/product_index_container';
 
 class UserProfile extends React.Component {
    constructor(props) {
@@ -48,37 +49,45 @@ class UserProfile extends React.Component {
       const surfProducts = this.products["surf"];
 
       if ( surfProducts.length ) {
-         surf = surfProducts.map(( surfboard, idx ) => {
-            return (
-               <div key={`surfboard-${idx}`}>
-                  <ProductItemContainer product={ surfboard } />
-               </div>
-            )
-         });
+         // surf = surfProducts.map(( surfboard, idx ) => {
+         //    return (
+         //       <div key={`surfboard-${idx}`}>
+         //          <ProductItemContainer product={ surfboard } />
+         //       </div>
+         //    )
+         // });
+
+         surf = (
+            <ProductIndexContainer products={ surf }></ProductIndexContainer>
+         )
       }
 
       const skateProducts = this.products["skate"];
 
       if ( skateProducts.length ) {
-         skate = skateProducts.map(( skateboard, idx ) => {
-            return (
-               <div key={`skateboard-${idx}`}>
-                  <ProductItemContainer product={ skateboard } />
-               </div>
-            )
-         });
+         // skate = skateProducts.map(( skateboard, idx ) => {
+         //    return (
+         //       <div key={`skateboard-${idx}`}>
+         //          <ProductItemContainer product={ skateboard } />
+         //       </div>
+         //    )
+         // });
+
+         skate = <ProductIndexContainer products={ skate }></ProductIndexContainer>
       }
 
       const snowProducts = this.products["snow"];
 
       if ( snowProducts.length ) {
-         snow = snowProducts.map(( snowboard, idx ) => {
-            return (
-               <div key={`snowboard-${idx}`}>
-                  <ProductItemContainer product={ snowboard } />
-               </div>
-            )
-         });
+         // snow = snowProducts.map(( snowboard, idx ) => {
+         //    return (
+         //       <div key={`snowboard-${idx}`}>
+         //          <ProductItemContainer product={ snowboard } />
+         //       </div>
+         //    )
+         // });
+
+         snow = <ProductIndexContainer products={ snow }></ProductIndexContainer>
       }
 
       let favorites = this.favorites;
