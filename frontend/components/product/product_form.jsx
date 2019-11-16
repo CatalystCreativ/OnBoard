@@ -6,50 +6,81 @@ class ProductForm extends React.Component {
     super(props);
     this.state = {
       name: '',
+      tag: '',
+      tags: [],
       images: [],
-      imageURLs: []
+      imageURLs: [],
+      highlight: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.dragover = this.dragover.bind(this);
+    this.dragLeave = this.dragLeave.bind(this);
+    this.handleKeyUp = this.handleKeyUp.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
-    handleChange(e) {
-        this.setState({[e.target.name]: e.target.value});
+  handleChange(e) {
+      this.setState({[e.target.name]: e.target.value});
+  }
+
+  handleDelete(key, label) {
+    return e => {
+      e.preventDefault();
+
+      if (label === 'tag') {
+        let tagsCopy = [...this.state.tags];
+        tagsCopy.splice(key, 1);
+        this.setState({tags: tagsCopy});
+      } else if (label === 'image') {
+        let imageCopy = [...this.state.images];
+        let imageURLCopy = [...this.state.imageURLs];
+        imageCopy.splice(key, 1);
+        imageURLCopy.splice(key, 1);
+        this.setState({images: [...imageCopy], imageURLs: [...imageURLCopy]});
+      }
+
     }
+  }
 
-    handleFile(e) {
-        const files = e.currentTarget.files;
-        const fileReader = new FileReader();
-        
-        fileReader.onload = () => {
-        this.setState({ images: [...this.state.images, files[0]], imageURLs: [...this.state.imageURLs, fileReader.result] });
-        };
+  handleKeyUp(e) {
+    e.preventDefault();
+    
+    if (e.keyCode === 32) {
+      this.setState({tags: [...this.state.tags, this.state.tag]});
+      e.target.value = '';
+    }
+  }
 
-        console.log(this.state.images, this.state.imageURLs);
+  dragover(e) {
+    e.preventDefault();
+    this.setState({highlight: true});
+  }
 
-        if (files.length) {
-            for (let i = 0; i < files.length; i++) {
-                fileReader.readAsDataURL(files[i]);
-            }    
-        }
+  dragLeave(e) {
+    e.preventDefault();
+    this.setState({highlight: false});
+  }
 
-    // for (let i = 0; i < files.length; i++) {
-    //     var file = files[i];
-    //     //Only pics
-    //     if (!file.type.match('image')) continue;
+  fileHelper(file) {
+    var picReader = new FileReader();
+    picReader.onload = e => {
+      console.log(file)
+      this.setState({ images: [...this.state.images, file], imageURLs: [...this.state.imageURLs, picReader.result] });
+    }
+    picReader.readAsDataURL(file);
+  }
 
-    //     var picReader = new FileReader();
-    //     picReader.addEventListener("load", function (event) {
-    //         var picFile = event.target;
-    //         var div = document.createElement("div");
-    //         div.innerHTML = "<img class='thumbnail' src='" + picFile.result + "'" + "title='" + picFile.name + "'/>";
-    //         output.insertBefore(div, null);
-    //     });
-    //     //Read the image
-    //     picReader.readAsDataURL(file);
-    // }
+  handleFile(e) {
+    e.preventDefault();
 
+    var files = e.target.files || e.dataTransfer.files; //FileList object
+
+    for (let i = 0; i < files.length; i++) {
+      this.fileHelper(files[i]);
+    }
+    this.setState({highlight: false});
   }
 
   // This will be where we create our form data to submit our photo
@@ -69,13 +100,61 @@ class ProductForm extends React.Component {
   }
 
   render() {
-    const preview = this.state.imageURL ? <img height="200px" width="200px" src={this.state.imageURL} /> : null;
+    // console.log(this.state.images, this.state.imageURLs)
+    let preview = null;
+    let previewNames = null;
+    let tagList = null;
+
+    if (this.state.imageURLs.length) {
+      preview = this.state.imageURLs.map((url, key) => {
+        let imageStyle = {
+          backgroundImage: "url(" + url + ")",
+          height: 300,
+          width: 300
+        }
+
+        return (
+          <div key={key} style={imageStyle}>
+            <button type="button" className="close" aria-label="Close" onClick={this.handleDelete(key, 'image')}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        )
+      })
+    }
+
+    if (this.state.images) {
+      previewNames = this.state.images.map((file, key) => {
+        return <p key={key}>{file.name}</p>
+      });
+    }
+
+    if (this.state.tags) {
+      tagList = this.state.tags.map((tag, key) => {
+        return (
+          <span className="tag" key={key}>
+            {tag}
+            <button type="button" className="close" aria-label="Close" onClick={this.handleDelete(key, 'tag')}>
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+        )
+      })
+    }
+    
+    let formName = null;
+    if (this.state.highlight) {
+      formName = 'product-form high-light';
+    } else {
+      formName = 'product-form';
+    }
+
     return (
       <div className="new-bench-container">
         <div className="new-bench-form">
-          <h3 className="new-bench-title">Create A Bench!</h3>
+          <h3 className="new-bench-title">Upload a Board</h3>
 
-          <form className="product-form" onSubmit={this.handleSubmit}>
+          <form className={formName} onDragLeave={this.dragLeave} onDragOver={this.dragover} onDrop={this.handleFile} onSubmit={this.handleSubmit}>
             <label className="bench-field">Name</label>
             <input
               name="name"
@@ -84,15 +163,13 @@ class ProductForm extends React.Component {
               className="bench-field"
             />
 
-            <div className="button-holder">
+            <div id="image-holder">
               <h3>Image preview </h3>
               {preview}
-              <h3 className="button-holder">Add a Picture</h3>
-              <input type="file" className="new-bench-button" multiple
-                onChange={e => {
-                    this.setState({ images: [...this.state.images, e.target.files] });
-                    console.log(this.state.images)
-                }}/>
+              {previewNames}
+              <h3 id="tag">Add a Picture</h3>
+              <input type="file" multiple="multiple"
+                onChange={this.handleFile}/>
             </div>
 
             <hr />
@@ -103,6 +180,12 @@ class ProductForm extends React.Component {
                 value="Create Bench"
                 className="new-bench-button"
               />
+            </div>
+
+
+            <div className="tags-input">
+              {tagList}
+              <input name="tag" className="main-input" type="text" onKeyUp={this.handleKeyUp} onChange={this.handleChange}/>
             </div>
           </form>
 
