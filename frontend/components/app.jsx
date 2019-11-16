@@ -13,12 +13,12 @@ import NavBarContainer from './navbar/navbar_container';
 
 export default function App({store}) {
     return (
-        <>
+        <>  
             <NavBarContainer />
-            <Route exact path="/" component ={Home}/>
-
             <AuthRoute exact path="/login" component={LogIn} />
             <AuthRoute exact path="/signup" component={SignUp} />
+            <Route exact path="/" component ={Home}/>
+            <Route exact path="/products/create" component={ProductForm} />
         </>
     )    
 }
