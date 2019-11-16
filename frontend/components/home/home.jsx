@@ -22,7 +22,7 @@ class Home extends React.Component {
 
         return (
             <>
-
+                I'm home!
             </>
         )
     }
