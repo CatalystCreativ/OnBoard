@@ -1,24 +1,32 @@
 import * as FavoriteAPIUtil from '../util/favorite_api_util';
 import { receiveErrors } from './error_actions';
-import { receiveProduct } from './product_actions';
 
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const RECEIVE_FAVORITE = 'RECEIVE_FAVORITE';
 export const RECEIVE_FAVORITES = 'RECEIVE_FAVORITES';
 
-const receiveFavorites = favorites => {
+const receiveFavorites = ({ favorites, products }) => {
    return {
       type: RECEIVE_FAVORITES,
-      favorites
+      favorites,
+      products
    }
 }
 
-export const fetchFavorites = userId => dispatch => {
-   return FavoriteAPIUtil.fetchFavorites(userId).then(favorites => dispatch(receiveFavorites(favorites)),
+const receiveFavorite = (productId) => {
+   return {
+      type: RECEIVE_FAVORITE,
+      productId
+   }
+}
+
+export const requestFavorites = userId => dispatch => {
+   return FavoriteAPIUtil.fetchFavorites(userId).then(data => dispatch(receiveFavorites(data)),
       err => dispatch(receiveErrors(err.responseJSON)));
 }
 
 export const addFavorite = productId => dispatch => {
-   return FavoriteAPIUtil.addFavorite(productId).then(product => dispatch(receiveProduct(product)),
+   return FavoriteAPIUtil.addFavorite(productId).then(() => dispatch(receiveFavorite(productId)),
       err => dispatch(receiveErrors(err.responseJSON)));
 };
 
