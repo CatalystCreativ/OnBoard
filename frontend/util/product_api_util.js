@@ -20,14 +20,15 @@ export const fetchProduct = id => {
    });
 };
 
-export const createProduct = formData => {
+export const createProduct = (formData, userId) => {
+   debugger
    return $.ajax({
       method: 'POST',
-      url: '/api/products',
+      url: `/api/users/${userId}/products`,
       data: formData,
       contentType: false,
       processData: false
-   })
+   });
 }
 
 export const updateProduct = data => {

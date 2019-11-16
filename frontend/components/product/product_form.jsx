@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { createProduct } from '../../actions/product_actions';
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -90,13 +91,17 @@ class ProductForm extends React.Component {
     const { name, images } = this.state;
     const formData = new FormData();
     
-    formData.append('post[name]', name);
+    formData.append('product[name]', name);
   
     for(let i = 0; i < images.length; i++) {
-      formData.append('post[images][]', images[i]);
+      
+      formData.append('product[images][]', images[i]);
     }
-  
-    this.props.myThunkActionCreator(formData);
+    console.log('name', formData.get("product[name]"));
+    console.log('file', formData.get(`product[images][]`));
+    debugger
+
+    this.props.createProduct(formData, this.props.currentUserId);
   }
 
   render() {
@@ -177,7 +182,7 @@ class ProductForm extends React.Component {
             <div className="button-holder">
               <input
                 type="submit"
-                value="Create Bench"
+                value="Upload Board"
                 className="new-bench-button"
               />
             </div>
@@ -203,9 +208,14 @@ class ProductForm extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.session.currentUser.id,
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
-    createBench: bench => dispatch(createBench(bench))
+    createProduct: (product, id) => dispatch(createProduct(product, id))
 });
 
-export default connect(null, mapDispatchToProps)(ProductForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ProductForm);
