@@ -4,20 +4,11 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 
-const useStyles = makeStyles(theme => ({
-    root: {
-      width: 300 + theme.spacing(3) * 2,
-      padding: theme.spacing(3),
-    },
-    margin: {
-      height: theme.spacing(3),
-    },
-  }));
-
 const PrettoSlider = withStyles({
 root: {
-    color: '#52af77',
+    color: '#429bb8',
     height: 8,
+    width: 300
 },
 thumb: {
     height: 24,
@@ -89,14 +80,20 @@ class UserSettings extends Component {
                         <input name="firstname" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange}></input> 
                         <input name="lastname" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange}></input> 
                         <br/>
-                        <span>Skill Level</span>
+                        <h3>Skill Level</h3>
                         <br/>
-                        <button>Snow</button> 
-                        <Typography gutterBottom>pretto.fr</Typography>
-                        <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
-                        <button>Surf</button> 
-                        <button>Skate</button> 
-
+                        <div>
+                            <Typography gutterBottom>Surf</Typography>
+                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
+                        </div>
+                        <div>
+                            <Typography gutterBottom>Snow</Typography>
+                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} /> 
+                        </div>
+                        <div>
+                            <Typography gutterBottom>Skate</Typography>
+                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
+                        </div>
                     </div>
                 </div>
             </div>
