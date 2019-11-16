@@ -1,5 +1,7 @@
 import React from 'react';
-import NavBarContainer from '../navbar/navbar_container';
+import Homepage from './homepage';
+import SettingsContainer from './settings_container';
+import { Router, Route, HashRouter } from 'react-router-dom';
 
 class Main extends React.Component {
     constructor(props){
@@ -10,7 +12,7 @@ class Main extends React.Component {
     render(){
         return (
             <>
-                <NavBarContainer/>
+                <Route exact path="/settings" component={SettingsContainer}/>
             </>
         )
     }
