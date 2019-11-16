@@ -32,9 +32,9 @@ export const receiveProduct = product => {
    };
 };
 
-export const createProduct = product => dispatch => {
-   return ProductAPIUtil.createProduct(product).then(product => dispatch(receiveProduct(product)),
-      err => dispatch(receiveErrors(err.responseJSON)));
+export const createProduct = (product, id) => dispatch => {
+   return ProductAPIUtil.createProduct(product, id).then(product => console.log(product.message/* dispatch(receiveProduct(product) */),
+      err => console.log(err.responseJSON)/*dispatch(receiveErrors(err.responseJSON))*/);
 };
 
 export const updateProduct = data => dispatch => {
