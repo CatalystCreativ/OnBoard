@@ -13,10 +13,10 @@ export const fetchProducts = filters => {
 //    })
 // }
 
-export const fetchProduct = id => {
+export const fetchProduct = (user_id, id) => {
    return $.ajax({
       method: 'GET',
-      url: `/api/products/${id}`
+      url: `/api/users/${user_id}/products/${id}`
    });
 };
 
