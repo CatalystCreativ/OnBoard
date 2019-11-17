@@ -92,6 +92,7 @@ class ProductForm extends React.Component {
     const formData = new FormData();
     
     formData.append('product[name]', name);
+    formData.append('product[user_id]', this.props.currentUserId);
   
     for(let i = 0; i < images.length; i++) {
       

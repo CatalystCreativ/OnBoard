@@ -10,10 +10,8 @@ class Api::ProductsController < ApplicationController
     end
 
     def create
-        debugger
-        product = Product.new(product_params)
-        debugger
-        if product.save
+        @product = Product.new(product_params)
+        if @product.save
             render :show
         else 
             render json: product.errors.full_messages 
@@ -29,6 +27,6 @@ class Api::ProductsController < ApplicationController
     private 
 
     def product_params
-        params.require(:product).permit(:name, owner_id: :user_id, images: [])
+        params.require(:product).permit(:name, :user_id, images: [])
     end
 end
