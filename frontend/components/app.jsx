@@ -4,6 +4,7 @@ import { Route, HashRouter } from 'react-router-dom';
 import LogIn from './session/log_in';
 import SignUp from './session/sign_up';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import NavBarContainer from './navbar/navbar_container';
 import ProductForm from './product/product_form';
 import NavBarContainer from './navbar/navbar_container';
 
@@ -14,7 +15,7 @@ import NavBarContainer from './navbar/navbar_container';
 
 export default function App({store}) {
     return (
-        <>
+        <>  
             <NavBarContainer />
             <AuthRoute exact path="/login" component={LogIn} />
             <AuthRoute exact path="/signup" component={SignUp} />
