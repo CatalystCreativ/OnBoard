@@ -99,7 +99,6 @@ class ProductForm extends React.Component {
     }
     console.log('name', formData.get("product[name]"));
     console.log('file', formData.get(`product[images][]`));
-    debugger
 
     this.props.createProduct(formData, this.props.currentUserId);
   }

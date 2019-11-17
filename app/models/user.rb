@@ -5,7 +5,13 @@ class User < ApplicationRecord
     # validates :username, length: { minimum: 6 }
     validates :password, length: { minimum: 6, allow_nil: true }
 
-    has_many :products
+    has_many(:products,
+    class_name: 'Product',
+    foreign_key: :owner_id,
+    primary_key: :id 
+    )
+
+
     has_one_attached :photo
 
     has_many :favorites
