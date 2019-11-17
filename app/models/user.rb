@@ -6,6 +6,9 @@ class User < ApplicationRecord
     validates :password, length: { minimum: 6, allow_nil: true }
 
     has_many :products
+
+
+    
     has_one_attached :photo
 
     has_many :favorites

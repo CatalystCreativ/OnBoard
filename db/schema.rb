@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_10_034053) do
+ActiveRecord::Schema.define(version: 2019_11_17_162946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_11_10_034053) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer "owner_id"
+    t.integer "user_id"
     t.string "name"
     t.string "condition"
     t.float "price"
@@ -64,11 +64,12 @@ ActiveRecord::Schema.define(version: 2019_11_10_034053) do
     t.float "volume"
     t.text "description"
     t.index ["name"], name: "index_products_on_name"
-    t.index ["owner_id"], name: "index_products_on_owner_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
     t.string "tag"
+    t.string "category"
   end
 
   create_table "users", force: :cascade do |t|
@@ -87,6 +88,9 @@ ActiveRecord::Schema.define(version: 2019_11_10_034053) do
     t.index ["email"], name: "index_users_on_email"
     t.index ["session_token"], name: "index_users_on_session_token"
     t.index ["username"], name: "index_users_on_username"
+  end
+
+  create_table "users_tables", force: :cascade do |t|
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

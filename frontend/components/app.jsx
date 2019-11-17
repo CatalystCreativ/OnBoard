@@ -21,9 +21,9 @@ export default function App({store}) {
             <AuthRoute exact path="/login" component={LogIn} />
             <AuthRoute exact path="/signup" component={SignUp} />
             <Route exact path="/" component ={Home}/>
-            <Route exact path="/products/create" component={ ProductForm } />
+            <ProtectedRoute exact path="/products/create" component={ProductForm} />
             <ProtectedRoute exact path="/settings" component={ SettingsContainer } />
-            <Route exact path="/productshow" component={ProductShow} />
+            <Route exact path="/products/:productId" component={ProductShow} />
         </>
     )    
 }
