@@ -17,7 +17,7 @@ class ProductIndex extends React.Component {
    render() {
       let products = "";
       
-      if ( this.products ) {
+      if ( this.products.length ) {
         products = this.products.map(( product, idx ) => {
             return (
                 <li key={`product-${idx}`}>

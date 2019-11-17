@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
+import Search from '../search/search';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class NavBar extends React.Component {
         if (this.props.currentUser) { //show avatar/logout button if a user is logged in
             authNav = (
                 <>
+                    <Search />
                     <Link className="nav-link" to="/products/create">Add Product</Link>
                     <Link className="nav-link" to="/messages">Messages</Link>
                     <Link className="nav-link" to={`/users/${this.props.currentUser.id}`}>
