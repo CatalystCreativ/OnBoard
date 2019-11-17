@@ -8,6 +8,7 @@ class ProductForm extends React.Component {
     this.state = {
       name: '',
       tag: '',
+      brand: '',
       tags: [],
       images: [],
       imageURLs: [],
@@ -20,10 +21,20 @@ class ProductForm extends React.Component {
     this.dragLeave = this.dragLeave.bind(this);
     this.handleKeyUp = this.handleKeyUp.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleSelect = this.handleSelect.bind(this);
   }
 
   handleChange(e) {
-      this.setState({[e.target.name]: e.target.value});
+      if (e.target.name !== 'tag' || (e.target.name === 'tag' && e.target.value[e.target.value.length - 1] !== ' ')) {
+        this.setState({[e.target.name]: e.target.value});
+      } else {
+        e.target.value = '';
+      }
+  }
+
+  handleSelect(e) {
+    // console.log(e.target.value);
+    this.setState({brand: e.target.value});
   }
 
   handleDelete(key, label) {
@@ -47,9 +58,8 @@ class ProductForm extends React.Component {
 
   handleKeyUp(e) {
     e.preventDefault();
-    
-    if (e.keyCode === 32) {
-      this.setState({tags: [...this.state.tags, this.state.tag]});
+    if (e.keyCode === 32 && this.state.tag.length) {
+      this.setState({tags: [...this.state.tags, this.state.tag], tag: ''});
       e.target.value = '';
     }
   }
@@ -67,7 +77,6 @@ class ProductForm extends React.Component {
   fileHelper(file) {
     var picReader = new FileReader();
     picReader.onload = e => {
-      console.log(file)
       this.setState({ images: [...this.state.images, file], imageURLs: [...this.state.imageURLs, picReader.result] });
     }
     picReader.readAsDataURL(file);
@@ -88,14 +97,20 @@ class ProductForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    const { name, images } = this.state;
+    const { name, images, tags, brand } = this.state;
     const formData = new FormData();
     
     formData.append('product[name]', name);
     formData.append('product[user_id]', this.props.currentUserId);
+
+    for (let i = 0; i < tags.length; i++) {
+      formData.append('product[tags][tagged][]', tags[i]);
+    }
+
+    formData.append('product[tags][brand]', brand);
+    formData.append('product[tags][name]', name);
   
     for(let i = 0; i < images.length; i++) {
-      
       formData.append('product[images][]', images[i]);
     }
     console.log('name', formData.get("product[name]"));
@@ -105,7 +120,7 @@ class ProductForm extends React.Component {
   }
 
   render() {
-    // console.log(this.state.images, this.state.imageURLs)
+
     let preview = null;
     let previewNames = null;
     let tagList = null;
@@ -176,6 +191,13 @@ class ProductForm extends React.Component {
               <input type="file" multiple="multiple"
                 onChange={this.handleFile}/>
             </div>
+
+            <select onChange={this.handleSelect}>
+              <option value="volvo">Volvo</option>
+              <option value="saab">Saab</option>
+              <option value="mercedes">Mercedes</option>
+              <option value="audi">Audi</option>
+            </select>
 
             <hr />
 
