@@ -1,18 +1,10 @@
-         // skate = skateProducts.map(( skateboard, idx ) => {
-         //    return (
-         //       <div key={`skateboard-${idx}`}>
-         //          <ProductItemContainer product={ skateboard } />
-         //       </div>
-         //    )
-         // });
-
 import React from 'react';
-import { Link } from 'react-router-dom';
+import ProductItemContainer from './product_item_container';
 
-class ProductItem extends React.Component {
+class ProductIndex extends React.Component {
    constructor(props) {
       super(props);
-      this.product = this.props.product;
+      this.products = this.props.products;
       this.addFavorite = this.props.addFavorite;
       this.handleFavorite = this.handleFavorite.bind(this);
    }
@@ -23,19 +15,25 @@ class ProductItem extends React.Component {
    }
 
    render() {
-      const product = this.product;
+      let products = "";
+      
+      if ( this.products ) {
+        products = this.products.map(( product, idx ) => {
+            return (
+                <li key={`product-${idx}`}>
+                    <ProductItemContainer product={ product } />
+                </li>
+            )
+        })
+      }
+
 
       return (
-         <Link to={`/products/${product.id}`}>
-            <button onClick={this.handleFavorite}>Favorite</button>
-            <button>Message</button>
-            <div className="project_image"></div>
-            <label>{product.title}</label>
-            <label>{product.condition}</label>
-            <label>{product.location}</label>
-         </Link>
+         <ul>
+             { products }
+         </ul>
       )
    }
 }
 
-export default ProductItem;
+export default ProductIndex;

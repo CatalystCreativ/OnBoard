@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductIndexContainer from '../products/product_index_container';
 
 class Home extends React.Component {
     constructor(props){
@@ -7,22 +8,23 @@ class Home extends React.Component {
         this.state = {
             category: ""
         }
+        this.changeCategory = this.changeCategory.bind(this);
     }
 
-    changeCategory() {
-
+    changeCategory(e) {
+        e.preventDefault();
+        const category = e.target.value;
+        this.setState({category});
     }
 
     render(){
-        // const surfProducts = this.products["surf"];
-        // const skateProducts = this.products["skate"];
-        // const snowProducts = this.products["snow"];
-
-
-
         return (
             <>
                 I'm home!
+                <button onClick={this.changeCategory} value={'surf'}>Surf</button>
+                <button onClick={this.changeCategory} value={'skate'}>Skate</button>
+                <button onClick={this.changeCategory} value={'snow'}>Snow</button>
+                <ProductIndexContainer products={ this.products } />
             </>
         )
     }

@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavBarContainer from './navbar/navbar_container';
 import ProductForm from './product/product_form';
 import SettingsContainer from './settings/settings_container';
+import UserProfileContainer from './user/user_profile_container';
 
  /* <Route exact path="/login" component={} />
             <Route exact path="/signup" component={} />
@@ -21,6 +22,7 @@ export default function App({store}) {
             <AuthRoute exact path="/signup" component={SignUp} />
             <Route exact path="/" component ={Home}/>
             <Route exact path="/products/create" component={ ProductForm } />
+            <Route exact path="/users/:userId" component={ UserProfileContainer } />
             <ProtectedRoute exact path="/settings" component={ SettingsContainer } />
         </>
     )    

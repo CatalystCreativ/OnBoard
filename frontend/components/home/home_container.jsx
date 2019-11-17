@@ -28,7 +28,7 @@ const msp = (state) => {
 
 const mdp = dispatch => {
    return {
-      receiveProducts: filters => dispatch(receiveProducts(filters))
+      receiveProducts: tags => dispatch(receiveProducts(tags))
    }
 }
 

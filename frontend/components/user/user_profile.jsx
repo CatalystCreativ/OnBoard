@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import Feed from './feed';
+// import Feed from './feed';
 import ProductIndexContainer from '../products/product_index_container';
 
 class UserProfile extends React.Component {
