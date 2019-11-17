@@ -58,7 +58,7 @@ class UserProfile extends React.Component {
          // });
 
          surf = (
-            <ProductIndexContainer products={ surf }></ProductIndexContainer>
+            <ProductIndexContainer products={ surf } />
          )
       }
 
@@ -73,7 +73,7 @@ class UserProfile extends React.Component {
          //    )
          // });
 
-         skate = <ProductIndexContainer products={ skate }></ProductIndexContainer>
+         skate = <ProductIndexContainer products={ skate } />
       }
 
       const snowProducts = this.products["snow"];
@@ -87,10 +87,15 @@ class UserProfile extends React.Component {
          //    )
          // });
 
-         snow = <ProductIndexContainer products={ snow }></ProductIndexContainer>
+         snow = <ProductIndexContainer products={ snow } />
       }
 
-      let favorites = this.favorites;
+      let favoriteProducts = this.favorites;
+      let favorites = "";
+
+      if ( favoriteProducts.length ) {
+         favorites = <ProductIndexContainer products={favorites} />
+      }
       
       return (
          <>

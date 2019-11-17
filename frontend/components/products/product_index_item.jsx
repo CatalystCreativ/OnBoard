@@ -19,6 +19,7 @@ class ProductItem extends React.Component {
 
       return (
          <Link to={`/products/${product.id}`}>
+            Product Item
             <button onClick={this.handleFavorite}>Favorite</button>
             <button>Message</button>
             <div className="project_image"></div>

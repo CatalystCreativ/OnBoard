@@ -2,10 +2,11 @@ import { connect } from 'react-redux';
 import { logIn, logOut } from '../../actions/session_actions';
 import NavBar from './navbar'; 
 
-const msp = ({ session }) => {
-   console.log('current user ', );
+const msp = (entities) => {
+   console.log()
+   const currentUser = entities.session.currentUser;
    return {
-      currentUser: session.currentUser
+      currentUser
    };
 };
 
