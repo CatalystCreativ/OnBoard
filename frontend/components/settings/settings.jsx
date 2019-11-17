@@ -4,6 +4,21 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import Typography from '@material-ui/core/Typography';
 
+const variable = [
+    {
+      value: 0,
+      label: 'Begginer',
+    },
+    {
+      value: 5,
+      label: 'Intermediate',
+    },
+    {
+      value: 10,
+      label: 'Pro',
+    },
+  ];
+
 const PrettoSlider = withStyles({
 root: {
     color: '#429bb8',
@@ -47,10 +62,16 @@ class UserSettings extends Component {
             y_coordinate: null,
             rating: null,
             bio: '',
-            value: 0
+            value: 0,
+            surf: 0,
+            snow: 0,
+            skate: 0,
+            active: 'surf'
          }
 
         this.handleChange = this.handleChange.bind(this);
+        this.onSliderChange = this.onSliderChange.bind(this);
+        this.updateActive = this.updateActive.bind(this);
     }
 
     handleChange(event){
@@ -59,11 +80,25 @@ class UserSettings extends Component {
         })
     }
 
-    onSliderChange(value) {
-        this.setState({
-          value: value
-        });
+    onSliderChange(name) {
+        return (e, value) => {
+            this.setState({
+            [name]: value
+            })
+        }
     }
+
+    updateActive(event){
+        this.setState({
+            active: event.target.value
+        })
+    }
+
+    // onSliderChange(e, value, name) {
+    //     this.setState({
+    //         [name]: value
+    //     })
+    // }
 
     //   onAfterChange = (value) => {
     //     console.log(value); //eslint-disable-line
@@ -71,28 +106,72 @@ class UserSettings extends Component {
 
     render() {  
         let currentUser = this.currentUser;
+        console.log('active is ', this.state.active);
         return (
             <div className="settings-container">
                 <div className="leftbox"></div>
                 <div className="rightbox">
                     <div className="profile">
                         <h1>Personal Info</h1>
-                        <input name="firstname" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange}></input> 
-                        <input name="lastname" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange}></input> 
+                        <input type="text" size="5" maxlength="4" name="firstname" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange}></input> 
+                        <input size="5" name="lastname" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange}></input> 
+                        <textarea placeholder="Bio" rows="4" cols="40"></textarea>
                         <br/>
-                        <h3>Skill Level</h3>
                         <br/>
                         <div>
-                            <Typography gutterBottom>Surf</Typography>
-                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
-                        </div>
-                        <div>
-                            <Typography gutterBottom>Snow</Typography>
-                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} /> 
-                        </div>
-                        <div>
-                            <Typography gutterBottom>Skate</Typography>
-                            <PrettoSlider valueLabelDisplay="auto" aria-label="pretto slider" defaultValue={20} />
+                            <div className="row">
+                                <button 
+                                value="surf" 
+                                style={{border: this.state.active === 'surf' ? '1px solid black' : 'none' }}
+                                onClick={this.updateActive}>
+                                Surf
+                                </button>
+                                <button 
+                                value="snow" 
+                                style={{border: this.state.active === 'snow' ? '1px solid black' : 'none' }}
+                                onClick={this.updateActive}>
+                                Snow
+                                </button>
+                                <button 
+                                value="skate" 
+                                style={{border: this.state.active === 'skate' ? '1px solid black' : 'none' }}
+                                onClick={this.updateActive}>
+                                Skate
+                                </button>
+                            </div>
+
+                            <PrettoSlider
+                            className="surfSlider"
+                            style={{display: this.state.active === 'surf' ? 'block' : 'none' }}
+                            value={this.state.surf} 
+                            onChange={this.onSliderChange('surf')}
+                            valueLabelDisplay="auto"
+                            marks={variable}
+                            min={0}
+                            max={10}
+                            defaultValue={5} />
+
+                            <PrettoSlider
+                            className="snowSlider"
+                            style={{display: this.state.active === 'snow' ? 'block' : 'none' }}
+                            onChange={this.onSliderChange('snow')}
+                            value={this.state.snow} 
+                            valueLabelDisplay="auto"
+                            marks={variable}
+                            min={0}
+                            max={10}
+                            defaultValue={5} />
+
+                            <PrettoSlider
+                            className="skateSlider"
+                            style={{display: this.state.active === 'skate' ? 'block' : 'none' }}
+                            onChange={this.onSliderChange('skate')}
+                            value={this.state.skate} 
+                            valueLabelDisplay="auto"
+                            marks={variable}
+                            min={0}
+                            max={10}
+                            defaultValue={5} />
                         </div>
                     </div>
                 </div>
