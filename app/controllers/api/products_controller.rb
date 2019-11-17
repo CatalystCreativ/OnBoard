@@ -14,7 +14,7 @@ class Api::ProductsController < ApplicationController
         product = Product.new(product_params)
         debugger
         if product.save
-            render json: {message: "PRODUCT IS SAVED!"}
+            render :show
         else 
             render json: product.errors.full_messages 
         end
@@ -29,6 +29,6 @@ class Api::ProductsController < ApplicationController
     private 
 
     def product_params
-        params.require(:product).permit(:name, images: [])
+        params.require(:product).permit(:name, owner_id: :user_id, images: [])
     end
 end
