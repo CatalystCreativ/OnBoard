@@ -7,7 +7,8 @@ class Home extends React.Component {
         super(props);
         this.products = this.props.products;
         this.state = {
-            category: ""
+            category: "",
+            searchTerm: ""
         }
         this.changeCategory = this.changeCategory.bind(this);
     }
@@ -18,18 +19,37 @@ class Home extends React.Component {
         this.setState({category});
     }
 
+    handleSubmit() {
+
+    }
+
     render(){
         return (
-            <>
+            <form onSubmit={this.handleSubmit}>
                 I'm home!
                 <SearchBarContainer />
+                <button type="button" onClick={this.changeCategory} value={'surf'}>Surf</button>
+                <button type="button" onClick={this.changeCategory} value={'skate'}>Skate</button>
+                <button type="button" onClick={this.changeCategory} value={'snow'}>Snow</button>
+                <br />
+                <button>Advanced</button>
+                <ProductIndexContainer products={ this.products } />
+            </form>
+
+            <form onSubmit={this.handleSubmit}>
+                <input type="text" onChange={this.update} value={this.state.searchTerm}></input>
+                <button>Location</button>
+                <button type="submit" onClick={this.handleSubmit}>Search</button>
+                <br />
                 <button onClick={this.changeCategory} value={'surf'}>Surf</button>
                 <button onClick={this.changeCategory} value={'skate'}>Skate</button>
                 <button onClick={this.changeCategory} value={'snow'}>Snow</button>
                 <br />
-                <button>Advanced</button>
-                <ProductIndexContainer products={ this.products } />
-            </>
+                <button>Volume</button>
+                <button>Skill Level</button>
+                <button>Brand</button>
+
+            </form>
         )
     }
 }
