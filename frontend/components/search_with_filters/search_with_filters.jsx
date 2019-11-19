@@ -34,11 +34,11 @@ class SearchBar extends React.Component {
          <form onSubmit={this.handleSubmit}>
             <input type="text" onChange={this.update} value={this.state.searchTerm}></input>
             <button>Location</button>
-            <button type="submit" onClick={this.handleSubmit}>Search</button>
+            <button>Search</button>
             <br/>
-            <button onClick={this.changeCategory} value={'surf'}>Surf</button>
-            <button onClick={this.changeCategory} value={'skate'}>Skate</button>
-            <button onClick={this.changeCategory} value={'snow'}>Snow</button>
+            <button name="category" onClick={this.update} value={'surf'}>Surf</button>
+            <button name="category" onClick={this.update} value={'skate'}>Skate</button>
+            <button name="category" onClick={this.update} value={'snow'}>Snow</button>
             <br/>
             <button>Volume</button>
             <button>Skill Level</button>
