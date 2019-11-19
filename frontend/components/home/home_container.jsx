@@ -5,7 +5,7 @@ import Home from './home';
 const msp = (state) => {
    const products = {"surf": [], "skate": [], "snow": []};
    const currentUser = state.session.currentUser;
-
+   const searchFilters = state.entities.searchFilters
    if ( state.entities.products ) {
       for (let i = 0; i < state.entities.products.length; i++) {
          const product = state.entities.products[i];
@@ -22,13 +22,14 @@ const msp = (state) => {
 
    return {
       products,
-      currentUser
+      currentUser,
+      searchFilters
    }
 }
 
 const mdp = dispatch => {
    return {
-      receiveProducts: tags => dispatch(receiveProducts(tags))
+      receiveProducts: searchFilters => dispatch(receiveProducts(searchFilters))
    }
 }
 

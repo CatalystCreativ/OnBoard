@@ -1,5 +1,5 @@
 import React from 'react';
-import { receiveTags } from '../../actions/tag_actions';
+import { receiveTags } from '../../actions/search_filter_actions';
 
 class SearchBar extends React.Component {
    constructor(props) {

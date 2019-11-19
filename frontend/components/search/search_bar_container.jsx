@@ -1,18 +1,18 @@
 import { connect } from 'react-redux';
-import { receiveTags, removeTags } from '../../actions/tag_actions';
+import { receiveSearchFilters, removeSearchFilters } from '../../actions/search_filter_actions';
 import SearchBar from './search_bar'; 
 
 const msp = (state) => {
-   let tags = state.entities.tags;
+   let searchFilters = state.entities.searchFilters;
    return {
-       tags
+       searchFilters
    };
 };
 
 const mdp = dispatch => {
    return {
-      receiveTags: tags => dispatch(receiveTags(tags)),
-      removeTags: () => dispatch(removeTags())
+      receiveSearchFilters: searchFilters => dispatch(receiveSearchFilters(SearchFilters)),
+      removeSearchFilters: () => dispatch(removeSearchFilters())
    };
 };
 
