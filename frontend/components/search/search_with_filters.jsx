@@ -1,7 +1,6 @@
 import React from 'react';
-import { receiveTags } from '../../actions/search_filter_actions';
 
-class SearchBar extends React.Component {
+class SearchWithFilters extends React.Component {
    constructor(props) {
       super(props);
       this.products = this.props.products;
@@ -25,7 +24,7 @@ class SearchBar extends React.Component {
 
    handleSubmit(e) {
       e.preventDefault();
-      receiveSearchFilters(this.state);
+      this.props.receiveSearchFilters(this.state);
       console.log(this.state.searchTerm);
    }
 
@@ -66,4 +65,4 @@ class SearchBar extends React.Component {
    }
 }
 
-export default SearchBar;
+export default SearchWithFilters;
