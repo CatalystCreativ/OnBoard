@@ -9,6 +9,7 @@ class SearchBar extends React.Component {
       this.update = this.update.bind(this);
       this.state = {
           searchTerm: "",
+          category: "surf",
           tags: []
       }
    }
@@ -43,7 +44,9 @@ class SearchBar extends React.Component {
             <button>Volume</button>
             <button>Skill Level</button>
             <button>Brand</button>
-
+            <br/>
+            <button>Save Filters</button>
+            <button>Reset Filters</button>
          </form>
       )
    }
