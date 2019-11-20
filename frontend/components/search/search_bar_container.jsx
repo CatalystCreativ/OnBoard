@@ -16,4 +16,4 @@ const mdp = dispatch => {
    };
 };
 
-export default connect(msp, mdp)(SearchBar)
+export default connect(msp, mdp)(SearchBar);
