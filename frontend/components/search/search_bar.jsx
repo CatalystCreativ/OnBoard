@@ -11,6 +11,9 @@ class SearchBar extends React.Component {
           searchTerm: "",
           tags: []
       }
+      if (this.props.searchFilters) {
+         this.state = this.props.searchFilters
+      }
    }
 
    handleFavorite() {
@@ -20,7 +23,7 @@ class SearchBar extends React.Component {
 
    handleSubmit(e) {
       e.preventDefault();
-      console.log(this.state.searchTerm);
+      this.props.receiveSearchFilters(this.state)
       this.props.history.push('/search');
    }
 
@@ -39,4 +42,4 @@ class SearchBar extends React.Component {
    }
 }
 
-export default withRouter(SearchBar);
+export default withRouter(SearchBar); 

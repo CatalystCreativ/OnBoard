@@ -11,7 +11,11 @@ class SearchBar extends React.Component {
           searchTerm: "",
           category: "surf",
           tags: []
-      }
+      };
+      if (this.props.searchFilters) {
+         this.state = this.props.searchFilters;
+      };
+      this.resetFilters = this.resetFilters.bind(this);
    }
 
    handleFavorite() {
@@ -21,13 +25,17 @@ class SearchBar extends React.Component {
 
    handleSubmit(e) {
       e.preventDefault();
-      receiveTags(this.state)
+      receiveSearchFilters(this.state);
       console.log(this.state.searchTerm);
    }
 
    update(e) {
        const searchTerm = e.target.value;
-       this.setState({searchTerm})
+       this.setState({searchTerm});
+   }
+
+   resetFilters() {
+      this.props.resetSearchFilters();
    }
 
    render() {
@@ -46,7 +54,7 @@ class SearchBar extends React.Component {
             <button>Brand</button>
             <br/>
             <button>Save Filters</button>
-            <button>Reset Filters</button>
+            <button type="button" onClick={this.resetFilters}>Reset Filters</button>
          </form>
       )
    }

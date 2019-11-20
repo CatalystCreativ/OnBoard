@@ -10,6 +10,9 @@ class Home extends React.Component {
             category: "",
             searchTerm: ""
         }
+        if (this.props.searchFilters) {
+            this.state = this.props.searchFilters;
+        }
         this.changeCategory = this.changeCategory.bind(this);
     }
 
