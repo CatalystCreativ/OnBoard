@@ -15,7 +15,7 @@ class SearchBar extends React.Component {
       if (this.props.searchFilters) {
          this.state = this.props.searchFilters;
       };
-      this.resetFilters = this.resetFilters.bind(this);
+      // this.resetFilters = this.resetFilters.bind(this);
    }
 
    handleFavorite() {
@@ -34,9 +34,15 @@ class SearchBar extends React.Component {
        this.setState({searchTerm});
    }
 
-   resetFilters() {
-      this.props.resetSearchFilters();
-   }
+   // saveFilters() {  TO BE IMPLEMENTED LATER AFTER FIRST MVP
+   //    const filters = this.state() {
+
+   //    }
+   // }
+
+   // resetFilters() { TO BE IMPLEMENTED LATER AFTER FIRST MVP
+   //    this.props.resetSearchFilters();
+   // }
 
    render() {
       return (
