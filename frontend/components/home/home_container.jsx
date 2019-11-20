@@ -4,11 +4,9 @@ import Home from './home';
 
 const msp = (state) => {
    const products = state.entities.products;
-   const currentUser = state.session.currentUser;
    const searchFilters = state.entities.searchFilters
    return {
       products,
-      currentUser,
       searchFilters
    }
 }
