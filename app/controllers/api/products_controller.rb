@@ -9,6 +9,15 @@ class Api::ProductsController < ApplicationController
     def index
     end
 
+    def show
+        @product = Product.find(params[:id])
+        if @product
+            render :show
+        else 
+            render json: @product.errors.full_messages
+        end
+    end
+
     def create
         debugger
         product = Product.new(product_params)
