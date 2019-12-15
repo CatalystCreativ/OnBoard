@@ -6,7 +6,7 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PRODUCT = 'RECEIVE_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
-export const requestProducts = filters => dispatch => {
+export const requestProducts = (filters) => dispatch => {
    return ProductAPIUtil.fetchProducts(filters).then(products => dispatch(receiveProducts(products)));
 };
 
@@ -21,8 +21,8 @@ const receiveProducts = products => {
    };
 };
 
-export const requestProduct = id => dispatch => {
-   return ProductAPIUtil.fetchProduct(id).then(product => dispatch(receiveProduct(product)));
+export const requestProduct = (userId, productId) => dispatch => {
+   return ProductAPIUtil.fetchProduct(userId, productId).then(product => dispatch(receiveProduct(product)));
 };
 
 export const receiveProduct = product => {
@@ -33,7 +33,7 @@ export const receiveProduct = product => {
 };
 
 export const createProduct = (product, id) => dispatch => {
-   return ProductAPIUtil.createProduct(product, id).then(product => console.log(product.message/* dispatch(receiveProduct(product) */),
+   return ProductAPIUtil.createProduct(product, id).then(product => dispatch(receiveProduct(product)),
       err => console.log(err.responseJSON)/*dispatch(receiveErrors(err.responseJSON))*/);
 };
 

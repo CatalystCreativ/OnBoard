@@ -1,24 +1,44 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { requestProduct } from '../../actions/product_actions';
 
 class ProductShow extends React.Component {
     constructor(props) {
        super(props);
        this.product = this.props.product;
+       this.state = { isLoading: true };
+    }
+    
+    componentDidMount() {
+        this.setState({isLoading: false});
+        // if (!this.props.product) {
+        //     console.log('product doesnt exist')
+        //     this.props.requestProduct(this.props.currentUserId, this.props.productId);
+        // }
     }
 
+    componentDidUpdate() {
+        if (!this.props.product) {
+            console.log('product doesnt exist')
+            this.props.requestProduct(this.props.currentUserId, this.props.productId);
+        }
+    }
+    
 
 
     render () {
+        const productId = this.props.productId;
 
-        return (
+        let loadingScreen = <h1>this is loading...</h1>;
+        let showScreen = (
             <div>
                 <div className="container pd-show mt-5">
                     <div className="row pd-row">
                         <div className="col-md-6">
-                            <img src="https://www.secretspot.co.uk/images/25186-1.jpg" className="product-img img-fluid rounded" />
+                            <img src={this.props.product ? this.props.product.photoUrls[0] : ''} className="product-img img-fluid rounded" />
                         </div>      
                         <div className=" col-md-6 mt-5 pb-2">
-                                <h2 className="pb-2">BOARD NAME</h2>
+                                <h2 className="pb-2">{this.props.product ? this.props.product.name : ''}</h2>
                                 <h4 className="pb-2 mb-2"> $1000</h4>
                                 <div className="pb-2"><strong>Condition:</strong> LIKE NEW</div>
                                 <h5 className="pb-2">High Preformance Board</h5>
@@ -31,8 +51,14 @@ class ProductShow extends React.Component {
                         </div> 
                     </div>             
                 </div>
-                {/* -------------------- Example Grid ------------------------------------- */}
-                {/* <div class="container">
+            </div>
+        );
+
+        return (
+            this.state.isLoading ? loadingScreen : showScreen
+                //{/* -------------------- Example Grid ------------------------------------- */}
+                //{
+                    /* <div class="container">
                     <div class="row">
                         <div class="col-md-4">
                             <div class="thumbnail">
@@ -178,12 +204,28 @@ class ProductShow extends React.Component {
                 </div>
             </div>
         </div>
-    </div> */}
-{/* </div> */}
+    </div> */
+  //}
+//{/* </div> */}
 
-            </div>
         )
     }
 }
 
-export default ProductShow;
+const mapStateToProps = (state, {match}) => {
+    const productId = match.params.productId;
+    console.log('productId', productId)
+    console.log('product', state.entities.products[productId])
+    return {
+      currentUserId: state.session.currentUser.id,
+      productId,
+      product: state.entities.products[productId]
+    }
+  }
+  
+const mapDispatchToProps = dispatch => ({
+    createProduct: (product, id) => dispatch(createProduct(product, id)),
+    requestProduct: (userId, productId) => dispatch(requestProduct(userId, productId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductShow);
