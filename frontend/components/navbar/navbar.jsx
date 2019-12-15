@@ -14,7 +14,7 @@ class NavBar extends React.Component {
         if (this.props.currentUser) { //show avatar/logout button if a user is logged in
             authNav = (
                 <>
-                    <Link className="nav-link" to="/products/create">Add Product</Link>
+                    <Link className="nav-link" to="/products/create/test">Add Product</Link>
                     <Link className="nav-link" to="/messages">Messages</Link>
                     <Link className="nav-link" to={`/users/${this.props.currentUser.id}`}>
                         My Profile
