@@ -6,6 +6,7 @@ class Api::ProductsController < ApplicationController
     #   resources :tags, only: [:create]
 
     def index
+       
     end
 
     def show
@@ -19,11 +20,9 @@ class Api::ProductsController < ApplicationController
     
     def find_or_create(value, category, product_id)
         tag_found = Tag.find_by(tag: value, category: category)
-
         if !tag_found
             tag_found = Tag.create(tag: value, category: category)
         end
-
         brand_product_tag = ProductTag.create(product_id: product_id, tag_id: tag_found.id)
     end
 
@@ -34,14 +33,11 @@ class Api::ProductsController < ApplicationController
     end
 
     def create
-        
         @product = Product.new(product_params)
-
         if @product.save
             self.find_or_create_multiple(params[:product][:tags][:tagged], :tagged, @product.id)
             self.find_or_create(params[:product][:tags][:name], :name,  @product.id)
             self.find_or_create(params[:product][:tags][:brand], :brand, @product.id)
-
             render :show
         else 
             render json: @product.errors.full_messages 
