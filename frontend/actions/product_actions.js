@@ -6,8 +6,9 @@ export const RECEIVE_PRODUCTS = 'RECEIVE_PRODUCTS';
 export const RECEIVE_PRODUCT = 'RECEIVE_PRODUCT';
 export const REMOVE_PRODUCT = 'REMOVE_PRODUCT';
 
-export const requestProducts = (filters) => dispatch => {
-   return ProductAPIUtil.fetchProducts(filters).then(products => dispatch(receiveProducts(products)));
+
+export const requestProducts = searchFilters => dispatch => {
+   return ProductAPIUtil.fetchProducts(searchFilters).then(data => dispatch(receiveProducts(data)));
 };
 
 // export const requestFavoriteProducts = userId => dispatch => {
