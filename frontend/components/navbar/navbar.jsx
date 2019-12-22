@@ -1,5 +1,7 @@
 import React from 'react';
+import { withRouter } from 'react-router';
 import { Route, Link } from 'react-router-dom'
+import SearchBarContainer from '../search/search_bar_container';
 
 class NavBar extends React.Component {
     constructor(props) {
@@ -7,6 +9,7 @@ class NavBar extends React.Component {
         this.currentUser = this.props.currentUser;
         this.logOut = this.props.logOut;
         this.logIn = this.props.logIn;
+        this.pathname = this.props.location.pathname;
     }
 
     render() {
@@ -40,13 +43,21 @@ class NavBar extends React.Component {
             )
         }
 
+        // const exclusionArray = [
+        //     '/',
+        //     '/search'
+        // ];
+
+        // { exclusionArray.indexOf(this.pathname) < 0 && <SearchContainer/> }
+
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <Link className="navbar-brand" to="/">OnBoard</Link>
+                <SearchBarContainer />
                 { authNav }
             </nav>
         )
     }
 }
 
-export default NavBar;
+export default withRouter(NavBar);

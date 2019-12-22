@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { requestUser } from '../../actions/user_actions';
 import { requestProducts } from '../../actions/product_actions';
 import { requestFavorites } from '../../actions/favorite_actions';
-import UserProfile from './profile';
+import UserProfile from './user_profile';
 
 const msp = ( state, ownProps ) => {
    const currentUser = state.session.currentUser;

@@ -1,8 +1,8 @@
-export const fetchProducts = filters => {
+export const fetchProducts = searchFilters => {
    return $.ajax({
       method: 'GET',
       url: '/api/products',
-      data: { filters: filters }
+      data: { searchFilters }
    });
 };
 
