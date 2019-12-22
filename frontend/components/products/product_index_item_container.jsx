@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { addFavorite } from '../../actions/favorite_actions';
-import ProductItem from './product_item';
+import ProductItem from './product_index_item';
 
 const msp = (product) => {
    return {
