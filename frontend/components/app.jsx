@@ -20,21 +20,14 @@ export default function App({store}) {
     return (
         <>  
             <NavBarContainer />
-<<<<<<< HEAD
-            <AuthRoute exact path="/login" component={LogIn} />
-            <AuthRoute exact path="/signup" component={SignUp} />
-            <Route exact path="/" component ={Home}/>
-            <ProtectedRoute exact path="/products/create" component={ProductForm} />
-=======
             <AuthRoute exact path="/login" component={ LogIn } />
             <AuthRoute exact path="/signup" component={ SignUp } />
             <Route exact path="/" component={ Home } />
             <Route exact path="/search" component={ SearchWithFiltersContainer } />
-            <Route exact path="/products/create" component={ ProductForm } />
             <Route exact path="/users/:userId" component={ UserProfileContainer } />
->>>>>>> 828230a7950117e128680537d5193e76879e60aa
             <ProtectedRoute exact path="/settings" component={ SettingsContainer } />
-            <Route exact path="/products/:productId" component={ProductShow} />
+            <ProtectedRoute exact path="/product/create" component={ProductForm} />
+            <Route exact path={`/products/:productId`} component={ProductShow} />
         </>
     )    
 }

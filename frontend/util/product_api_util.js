@@ -21,7 +21,7 @@ export const fetchProduct = (user_id, id) => {
 };
 
 export const createProduct = (formData, userId) => {
-   debugger
+   
    return $.ajax({
       method: 'POST',
       url: `/api/users/${userId}/products`,
