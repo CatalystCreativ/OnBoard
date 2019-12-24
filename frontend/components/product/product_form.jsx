@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createProduct } from '../../actions/product_actions';
+import { withRouter } from 'react-router-dom';
+import TextField from "@material-ui/core/TextField";
+import { Autocomplete } from '@material-ui/lab';
 
 class ProductForm extends React.Component {
   constructor(props) {
@@ -12,8 +15,19 @@ class ProductForm extends React.Component {
       tags: [],
       images: [],
       imageURLs: [],
-      highlight: false
+      highlight: false,
+      productUploaded: false
     };
+    this.brands = [
+      '7s', 
+      'aipa', 
+      'anaconda', 
+      'bing', 
+      'black rose mfg', 
+      'body glove', 
+      'carve sports', 
+      'catch surf'
+    ];
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFile = this.handleFile.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -33,8 +47,8 @@ class ProductForm extends React.Component {
   }
 
   handleSelect(e) {
-    // console.log(e.target.value);
-    this.setState({brand: e.target.value});
+    console.log(e.target.innerHTML);
+    this.setState({brand: e.target.innerHTML});
   }
 
   handleDelete(key, label) {
@@ -116,7 +130,9 @@ class ProductForm extends React.Component {
     console.log('name', formData.get("product[name]"));
     console.log('file', formData.get(`product[images][]`));
 
-    this.props.createProduct(formData, this.props.currentUserId);
+    this.props.createProduct(formData, this.props.currentUserId).then(() => {
+      this.setState({productUploaded: true});
+    });
   }
 
   render() {
@@ -124,6 +140,7 @@ class ProductForm extends React.Component {
     let preview = null;
     let previewNames = null;
     let tagList = null;
+    // console.log(this.state.brand)
 
     if (this.state.imageURLs.length) {
       preview = this.state.imageURLs.map((url, key) => {
@@ -169,6 +186,10 @@ class ProductForm extends React.Component {
       formName = 'product-form';
     }
 
+    if (this.state.productUploaded) {
+      this.props.history.push(`/products/${this.props.showPageId}`);
+    } 
+
     return (
       <div className="new-bench-container">
         <div className="new-bench-form">
@@ -192,13 +213,6 @@ class ProductForm extends React.Component {
                 onChange={this.handleFile}/>
             </div>
 
-            <select onChange={this.handleSelect}>
-              <option value="volvo">Volvo</option>
-              <option value="saab">Saab</option>
-              <option value="mercedes">Mercedes</option>
-              <option value="audi">Audi</option>
-            </select>
-
             <hr />
 
             <div className="button-holder">
@@ -208,13 +222,29 @@ class ProductForm extends React.Component {
                 className="new-bench-button"
               />
             </div>
+      
 
-
-            <div className="tags-input">
+            {/* <div className="tags-input">
               {tagList}
               <input name="tag" className="main-input" type="text" onKeyUp={this.handleKeyUp} onChange={this.handleChange}/>
-            </div>
+            </div> */}
+
+            <Autocomplete
+            onChange={this.handleSelect}
+            id="combo-box-demo"
+            options={this.brands}
+            autoHighlight={true}
+            autoSelect={true}
+            getOptionLabel={option => option}
+            style={{ width: 300 }}
+            freeSolo={true}
+            renderInput={params => (
+            <TextField {...params} label="Brands" variant="outlined" fullWidth />
+            )}
+          />
+            
           </form>
+
 
           <div className="button-holder">
             <button
@@ -233,6 +263,7 @@ class ProductForm extends React.Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.session.currentUser.id,
+    showPageId: state.ui.productId
   }
 }
 
@@ -240,4 +271,4 @@ const mapDispatchToProps = dispatch => ({
     createProduct: (product, id) => dispatch(createProduct(product, id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductForm);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductForm));

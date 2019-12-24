@@ -1,8 +1,8 @@
-export const fetchProducts = filters => {
+export const fetchProducts = (user_id, searchFilters) => {
    return $.ajax({
       method: 'GET',
-      url: '/api/products',
-      data: { filters: filters }
+      url: `/api/users/${user_id}/products`,
+      data: { searchFilters }
    });
 };
 
@@ -21,7 +21,7 @@ export const fetchProduct = (user_id, id) => {
 };
 
 export const createProduct = (formData, userId) => {
-   debugger
+   
    return $.ajax({
       method: 'POST',
       url: `/api/users/${userId}/products`,

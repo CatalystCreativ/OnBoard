@@ -5,13 +5,13 @@ class User < ApplicationRecord
     # validates :username, length: { minimum: 6 }
     validates :password, length: { minimum: 6, allow_nil: true }
 
-    has_many :products
+    has_many :products, dependent: :destroy
 
 
     
-    has_one_attached :photo
+    has_one_attached :photo, dependent: :destroy
 
-    has_many :favorites
+    has_many :favorites, dependent: :destroy
     has_many :favorite_products, through: :favorites
 
     after_initialize :ensure_session_token
