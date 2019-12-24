@@ -22,12 +22,12 @@ export default function App({store}) {
             <NavBarContainer />
             <AuthRoute exact path="/login" component={ LogIn } />
             <AuthRoute exact path="/signup" component={ SignUp } />
-            <Route exact path="/" component={ Home } />
-            <Route exact path="/search" component={ SearchWithFiltersContainer } />
-            <Route exact path="/users/:userId" component={ UserProfileContainer } />
+            <ProtectedRoute exact path="/" component={ Home } />
+            <ProtectedRoute exact path="/search" component={ SearchWithFiltersContainer } />
+            <ProtectedRoute exact path="/users/:userId" component={ UserProfileContainer } />
             <ProtectedRoute exact path="/settings" component={ SettingsContainer } />
             <ProtectedRoute exact path="/product/create" component={ProductForm} />
-            <Route exact path={`/products/:productId`} component={ProductShow} />
+            <ProtectedRoute exact path={`/products/:productId`} component={ProductShow} />
         </>
     )    
 }

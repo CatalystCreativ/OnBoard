@@ -6,7 +6,9 @@ class Api::ProductsController < ApplicationController
     #   resources :tags, only: [:create]
 
     def index
-       
+       @products = Product.all
+
+       render :index
     end
 
     def show

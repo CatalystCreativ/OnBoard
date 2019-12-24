@@ -6,6 +6,7 @@ class ProductIndex extends React.Component {
       super(props);
       this.products = this.props.products;
       this.addFavorite = this.props.addFavorite;
+      this.currentUserId = this.props.currentUserId;
       this.handleFavorite = this.handleFavorite.bind(this);
    }
 
@@ -14,11 +15,16 @@ class ProductIndex extends React.Component {
       this.addFavorite(productId)
    }
 
+   componentDidMount() {
+      this.props.requestProducts(this.currentUserId);
+   }
+
    render() {
       let products = "";
       
-      if ( this.products.length ) {
-        products = this.products.map(( product, idx ) => {
+      if ( this.props.products.length ) {
+         // console.log(this.props.products)
+        products = this.props.products.map(( product, idx ) => {
             return (
                 <li key={`product-${idx}`}>
                     <ProductItemContainer product={ product } />

@@ -1,4 +1,4 @@
-import { RECEIVE_TAGS, REMOVE_TAGS } from '../actions/search_filter_actions';
+import { RECEIVE_SEARCH_FILTERS, REMOVE_SEARCH_FILTERS } from '../actions/search_filter_actions';
 import merge from 'lodash/merge';
 
 export default (state = {}, action) => {

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class ProductItem extends React.Component {
    constructor(props) {
       super(props);
-      this.product = this.props.product;
+      this.product = props.product;
       this.addFavorite = this.props.addFavorite;
       this.handleFavorite = this.handleFavorite.bind(this);
    }
@@ -23,9 +23,10 @@ class ProductItem extends React.Component {
             <button onClick={this.handleFavorite}>Favorite</button>
             <button>Message</button>
             <div className="project_image"></div>
-            <label>{product.title}</label>
+            <label>{product.name}</label>
             <label>{product.condition}</label>
             <label>{product.location}</label>
+            <img src={product.photoUrls.length ? product.photoUrls[0] : ""}/>
          </Link>
       )
    }

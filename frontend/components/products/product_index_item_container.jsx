@@ -2,11 +2,6 @@ import { connect } from 'react-redux';
 import { addFavorite } from '../../actions/favorite_actions';
 import ProductItem from './product_index_item';
 
-const msp = (product) => {
-   return {
-      product
-   };
-};
 
 const mdp = dispatch => {
    return {
@@ -14,4 +9,4 @@ const mdp = dispatch => {
    };
 };
 
-export default connect(msp, mdp)(ProductItem);
+export default connect(null, mdp)(ProductItem);
